@@ -1,0 +1,46 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main.html}">
+<head>
+  <title>Service Providers</title>
+</head>
+<body>
+
+<th:block layout:fragment="content">
+  <table class="table table-dark table-hover">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Provider</th>
+      <th scope="col">Membership Plan</th>
+      <th scope="col">Price</th>
+      <th colspan="2">Actions</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="sp : ${serviceproviders}">
+      <th scope="row" th:text="${sp.id}" />
+      <td th:text="${sp.provider.getProviderName}" />
+      <td th:text="${sp.membershipPlan}" />
+      <td th:text="${sp.monthlyFee}" />
+      <td><a th:href="'/serviceprovider/updateprovider/' + ${sp.id}">
+        <i class="bi bi-pencil-square" data-bs-toggle="tooltip" data-bs-placement="top" title="Update"></i>
+      </a></td>
+      <td><a th:href="'/serviceprovider/deleteprovider/' + ${sp.id}">
+        <i class='bi bi-trash3' data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"></i>
+      </a></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div>
+    <a href="/serviceprovider/newprovider" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">
+      Add New Service Provider
+    </a>
+  </div>
+
+</th:block>
+</body>
+</html>

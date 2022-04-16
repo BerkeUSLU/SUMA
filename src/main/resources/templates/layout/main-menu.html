@@ -1,0 +1,48 @@
+<div class="container mt4">
+
+    <div class="row">
+        <!--<div col="3">
+            <img width="230px" height="101px" th:src="@{/images/logo.png}">
+        </div>-->
+
+        <div col="9">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/contact">Contact</a>
+                </li>
+
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="/auth/signup">Signup</a>
+                </li>
+
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="/subs/">Subscriptions</a>
+                </li>
+
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" href="/analytics/">Analytics</a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<!--
+<div class="container mb8 mt4">
+
+</div>
+-->

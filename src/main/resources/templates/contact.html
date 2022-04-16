@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main.html}">
+<!--layout:decorator="layout/main"-->
+
+<head>
+  <title>Contact</title>
+</head>
+<body>
+
+<th:block layout:fragment="content">
+
+
+  <!--Content goes here -->
+  <div class="d-flex flex-column flex-sm-column flex-md-row flex-lg-row flex-xxl-row justify-content-center align-items-center">
+    <div>
+      <p class="fs-1">Don't hesitate to contact us<br/>if you have any questions</p>
+      <a href="mailto:subscriptionmanagerapp@gmail.com" class="btn btn-outline-primary btn-lg">Contact Us</a>
+    </div>
+  <img th:src="@{images/ask.png/}" alt="ask" width="400"
+       height="400"/>
+  </div>
+  <!--<div class="logo"> <img th:src="@{/images/logo2.png}" alt=""> </div> -->
+
+
+
+</th:block>
+</body>
+</html>

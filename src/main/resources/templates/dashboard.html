@@ -1,0 +1,33 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main.html}">
+<!--layout:decorator="layout/main"-->
+
+<head>
+    <title>Home</title>
+</head>
+<body>
+
+<th:block layout:fragment="content">
+
+    <h1>Subscriptions Dashboard</h1>
+
+    <div th:each="subs : ${subscription}">
+        <div class="card" style="width: 18rem;">
+            <img src=th:text="${subs.serviceProvider.provider.getImagePath()}" class="card-img-top"
+                 alt="${subs.serviceProvider.provider.getProviderName()}">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${subs.serviceProvider.provider.getProviderName()}"></h5>
+                <p th:text="${subs.serviceProvider.monthlyFee} + '$'" class="card-text"></p>
+                <p th:text="${subs.serviceProvider.membershipPlan}" class="card-text"></p>
+                <p th:text="${subs.subsBeginDate}" class="card-text"></p>
+                <p th:text="${subs.subsEndDate}" class="card-text"></p>
+
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>

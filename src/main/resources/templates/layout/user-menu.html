@@ -1,0 +1,20 @@
+<div sec:authorize="isAuthenticated()" class="shadow p-3 mb-5 bg-white rounded">
+    <h5>User</h5>
+    <ul class="nav flex-column">
+
+        <li sec:authorize="isAuthenticated()" class="nav-item">
+            <a class="nav-link" href="/auth/updateuser">Update Profile</a>
+        </li>
+
+        <li sec:authorize="isAuthenticated()" class="nav-item">
+            <a class="nav-link" href="/auth/deleteuser">Delete Profile</a>
+        </li>
+
+        <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+            <a class="nav-link" href="/auth/signup">New Profile</a>
+        </li>
+        <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+            <a class="nav-link" href="/auth/listusers">List Users</a>
+        </li>
+    </ul>
+</div>

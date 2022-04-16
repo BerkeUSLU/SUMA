@@ -1,0 +1,70 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main.html}">
+<head>
+    <title>Subcriptions-</title>
+</head>
+<body>
+
+<th:block layout:fragment="content">
+
+    <form action="#" th:action="@{/subs/addnewsubscription}" th:object="${subscriptiondto}" method="post"
+          xmlns:th="http://www.w3.org/1999/xhtml">
+        <div th:if="${#fields.hasAnyErrors()}">
+            <h6>Errors in form</h6>
+            <ul>
+                <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+            </ul>
+        </div>
+
+        <div class="mb-3">
+            <label for="serviceprovider" class="form-label">Service Provider</label>
+            <select class="form-control" id="serviceprovider" name="serviceprovider" th:field="*{providerId}">
+                <option th:each="serPro : ${servicesProviders}" th:value="${serPro.id}"
+                        th:text="${serPro.provider.providerName  + ' ' +
+                        serPro.membershipPlan + '[' +
+                        serPro.monthlyFee + ']'}"></option>
+            </select>
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label for="startdate">Start Date</label>
+            <input class="form-control" type="date" id="startdate" name="startdate" th:field="*{beginDate}"/>
+            <span th:if="${#fields.hasErrors('beginDate')}" th:errors="*{beginDate}">Please fill</span>
+
+
+        </div>
+
+        <div class="mb-3">
+
+            <label for="enddate">End Date</label>
+            <input class="form-control" type="date" id="enddate" name="enddate" th:field="*{endDate}">
+            <span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">Please fill </span>
+        </div>
+
+        <div class="mb-3">
+            <label for="usernametologin">Username To Login</label>
+            <input class="form-control" type="text" id="usernametologin" name="usernametologin"
+                   th:field="*{usernameToLogin}"/>
+            <span th:if="${#fields.hasErrors('usernameToLogin')}" th:errors="*{usernameToLogin}"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="passwordtologin">Password To Login</label>
+            <input class="form-control" type="password" id="passwordtologin" name="passwordtologin"
+                   th:field="*{passwordToLogin}"/>
+            <span th:if="${#fields.hasErrors('passwordToLogin')}" th:errors="*{passwordToLogin}"></span>
+        </div>
+
+        <input type="submit" value="Add Subscription" class="btn btn-primary">
+    </form>
+
+</th:block>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main.html}">
+
+<head>
+    <title>New Service Provider</title>
+</head>
+<body>
+
+<th:block layout:fragment="content">
+    <!--Content goes here -->
+    <div class="row">
+        <h1>New Service Provider</h1>
+    </div>
+    <form action="#" th:action="@{/serviceprovider/addnewprovider}" th:object="${serviceprovider}" method="post"
+          xmlns:th="http://www.w3.org/1999/xhtml">
+
+        <div class="content mt4">
+            <div class="mb-3">
+                <label for="provider" class="form-label">Providers</label>
+                <select class="form-control" id="provider" name="provider" th:field="*{providerId}">
+                    <option th:each="serPro : ${providers}" th:value="${serPro.id}"
+                            th:text="${serPro.providerName}"></option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="plan" class="form-label">Membership Plan</label>
+                <input type="text" th:field="*{membershipPlan}" id="plan" placeholder="Membership Plan" class="form-control">
+                <span th:if="${#fields.hasErrors('membershipPlan')}" th:errors="*{membershipPlan}"></span>
+            </div>
+            <div class="mb-3">
+                <label for="price"  class="form-label">Price / Monthly</label>
+                <input type="text" th:field="*{monthlyFee}" id="price" placeholder="Montly Price"  class="form-control">
+                <span th:if="${#fields.hasErrors('monthlyFee')}" th:errors="*{monthlyFee}"></span>
+            </div>
+
+        </div>
+
+        <input type="submit" value="Add Subscription" class="btn btn-primary mt4">
+    </form>
+
+</th:block>
+</body>
+</html>

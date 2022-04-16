@@ -1,0 +1,33 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main.html}">
+<!--layout:decorator="layout/main"-->
+
+<head>
+  <title>Login</title>
+</head>
+<body>
+
+<th:block layout:fragment="content">
+
+
+  <!--Content goes here -->
+  <div class="wrapper">
+    <div class="logo"> <img th:src="@{/images/logo2.png}" alt=""> </div>
+    <div class="text-center mt-4 name"> Subscription Manager </div>
+    <form class="p-3 mt-3" method="post" action="/login">
+      <div class="form-field d-flex align-items-center">
+        <span class="far fa-user"></span> <input type="text" name="username" id="username" placeholder="Username"> </div>
+      <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span>
+        <input type="password" name="password" id="password" placeholder="Password"> </div> <button class="btn mt-3">Login</button>
+    </form>
+    <div class="text-center fs-6"> <a href="/auth/forgotpassword" >Forgot password?</a>
+      or <a th:href="@{/auth/signup}">Sign up</a> </div>
+  </div>
+
+
+
+</th:block>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main.html}">
+<!--layout:decorator="layout/main"-->
+
+<head>
+    <title>Home</title>
+    <script type="text/javascript"
+            src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+
+<th:block layout:fragment="content">
+
+    <div align="center" style="width: 1000px;">
+        <h2>Analytics</h2>
+        <div id="chart_div"></div>
+        <div id="expense_chart_div"></div>
+
+    </div>
+    <script th:inline="javascript">
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            console.log('Page loaded');
+            google.charts.load('current', {
+                packages: ['corechart', 'bar']
+            });
+            google.charts.setOnLoadCallback(monthlyFeeByProviderBarChart);
+            google.charts.setOnLoadCallback(monthlyAndYearlyExpensesBarChart);
+            console.log('invoked draw callback');
+        });
+
+        function monthlyFeeByProviderBarChart() {
+         let real_data = [[${subsbyprovider}]];
+            let data = new google.visualization.DataTable();
+            data.addColumn('string', 'Service');
+            data.addColumn('number', 'Fee');
+            Object.keys(real_data).forEach(function (key) {
+                data.addRow([key, real_data[key]]);
+            });
+            let options = {
+                title: 'Spending by Provider',
+                hAxis: {
+                    title: 'Service',
+                },
+                vAxis: {
+                    title: 'Fee'
+                }
+            };
+            let chart = new google.visualization.ColumnChart(document
+                .getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+
+         function monthlyAndYearlyExpensesBarChart() {
+          let expense_data = [[${expenses}]];
+            let data = new google.visualization.DataTable();
+            data.addColumn('string', 'Time');
+            data.addColumn('number', 'Expense');
+            Object.keys(expense_data).forEach(function (key) {
+                data.addRow([key, expense_data[key]]);
+            });
+            let options = {
+                title: 'Spending by Provider',
+                hAxis: {
+                    title: 'Time',
+                },
+                vAxis: {
+                    title: 'Expense'
+                }
+            };
+            let chart = new google.visualization.ColumnChart(document
+                .getElementById('expense_chart_div'));
+            chart.draw(data, options);
+        }
+
+    </script>
+
+</th:block>
+</body>
+</html>
